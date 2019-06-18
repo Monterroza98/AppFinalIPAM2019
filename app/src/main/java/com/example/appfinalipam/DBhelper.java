@@ -18,17 +18,17 @@ public class DBhelper extends SQLiteOpenHelper {
 
     // información del a base de datos
     static final String DB_NAME = "DBSTUDENT";
-    static final int DB_VERSION = 1;
+    static final int DB_VERSION = 5;
 
     // Información de la base de datos
     private static final String CREATE_TABLE = "create table "
             + TABLE_STUDENTS + "(" + STUDENT_ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + STUDENT_NAME + " TEXT NOT NULL, "
-            + STUDENT_LASTNAME+ "TEXT NOT NULL, "
-            + STUDENT_GENDER+ "TEXT NOT NULL, "
-            + STUDENT_CARNET+ "TEXT NOT NULL, "
-            + STUDENT_CAREER+ "TEXT NOT NULL);";
+            + STUDENT_LASTNAME+ " TEXT NOT NULL, "
+            + STUDENT_GENDER+ " TEXT NOT NULL, "
+            + STUDENT_CARNET+ " TEXT NOT NULL, "
+            + STUDENT_CAREER+ " TEXT NOT NULL);";
 
     public DBhelper(Context context) {
         super(context, DB_NAME, null,DB_VERSION);

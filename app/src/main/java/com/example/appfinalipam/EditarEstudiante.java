@@ -9,12 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 
 public class EditarEstudiante extends Activity implements View.OnClickListener {
 
     EditText edtID, edtNombre, edtApellido, edtCarnet;
     RadioButton rbtnMasc, rbtnFem;
-    ExpandableListView listaCarreraEdt;
+    Spinner listaCarreraEdt;
     Button btnEdt;
 
     long id;
@@ -36,7 +37,7 @@ public class EditarEstudiante extends Activity implements View.OnClickListener {
         edtCarnet = (EditText) findViewById(R.id.edtCarnet);
         rbtnMasc = (RadioButton) findViewById(R.id.rbtnMascEdt);
         rbtnFem = (RadioButton) findViewById(R.id.rbtnFemEdt);
-        listaCarreraEdt = (ExpandableListView) findViewById(R.id.listCarreraEdt);
+        listaCarreraEdt = (Spinner) findViewById(R.id.listCarreraEdt);
         btnEdt = (Button) findViewById(R.id.btnEditarEstudiante);
 
         Intent i = getIntent();

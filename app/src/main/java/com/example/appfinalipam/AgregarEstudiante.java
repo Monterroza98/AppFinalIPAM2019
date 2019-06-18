@@ -5,16 +5,18 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 
 public class AgregarEstudiante extends Activity implements View.OnClickListener {
 
     EditText nombre, apellido, carnet;
     RadioButton rbtnFem, rbtnMasc;
-    ExpandableListView listaCarrera;
+    Spinner listaCarrera;
     Button btnAgregar;
     SQLControlador dbconeccion;
 
@@ -28,11 +30,22 @@ public class AgregarEstudiante extends Activity implements View.OnClickListener 
         carnet = (EditText) findViewById(R.id.addCarnet);
         rbtnMasc = (RadioButton) findViewById(R.id.rbtnMascAdd);
         rbtnFem = (RadioButton) findViewById(R.id.rbtnFemAdd);
-        listaCarrera= (ExpandableListView) findViewById(R.id.listCarreraAdd);
+        listaCarrera= (Spinner) findViewById(R.id.listCarreraAdd);
         btnAgregar = (Button) findViewById(R.id.btnGuardarEstudiante);
         dbconeccion = new SQLControlador(this);
         dbconeccion.abrirBaseDeDatos();
         btnAgregar.setOnClickListener(this);
+
+        final String[] datos =
+                new String[]{"Ingenieria de Sistemas",
+                        "Ingenieria Industrial",
+                        "Ingenieria Civil","Arquitectura"};
+
+        ArrayAdapter<String> adaptador =
+                new ArrayAdapter<String>(this,
+                        android.R.layout.simple_spinner_item, datos);
+
+        listaCarrera.setAdapter(adaptador);
     }
 
     @Override
