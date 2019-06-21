@@ -1,17 +1,23 @@
 package com.example.appfinalipam;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-public class EditarEstudiante extends Activity implements View.OnClickListener {
+import java.io.Serializable;
+
+public class EditarEstudiante extends AppCompatActivity implements View.OnClickListener, Serializable {
 
     EditText edtID, edtNombre, edtApellido, edtCarnet;
     RadioButton rbtnMasc, rbtnFem;
@@ -39,18 +45,42 @@ public class EditarEstudiante extends Activity implements View.OnClickListener {
         rbtnFem = (RadioButton) findViewById(R.id.rbtnFemEdt);
         listaCarreraEdt = (Spinner) findViewById(R.id.listCarreraEdt);
         btnEdt = (Button) findViewById(R.id.btnEditarEstudiante);
+        btnEdt.setBackgroundColor(Color.DKGRAY);
+        btnEdt.setTextColor(Color.WHITE);
+
 
         Intent i = getIntent();
-        String valorID = i.getStringExtra("edtID");
-        String valorNombre = i.getStringExtra("edtNombre");
-        String valorApellido = i.getStringExtra("edtApellido");
-        String valorSexo = i.getStringExtra("edtSexo");
-        String valorCarnet = i.getStringExtra("edtCarnet");
-        String valorCarrera = i.getStringExtra("edtCarrera");
+        Estudiante edit;
+        edit= (Estudiante) getIntent().getSerializableExtra("edit");
 
-        id= Long.parseLong(valorID);
+        int valorID = edit.getId();
+        String valorNombre = edit.getNombre();
+        String valorApellido =edit.getApellido();
+        String valorSexo =edit.getSexo();
+        String valorCarnet =edit.getCarnet();
+        String valorCarrera = edit.getCarrera();
 
-        edtID.setText(valorID);
+        int posicionCarrera=0;
+        id=valorID;
+
+        final String[] datos =
+                new String[]{"Ingenieria de Sistemas",
+                        "Ingenieria Industrial",
+                        "Ingenieria Civil","Arquitectura"};
+
+        ArrayAdapter<String> adaptador =
+                new ArrayAdapter<String>(this,
+                        android.R.layout.simple_spinner_item, datos);
+
+        listaCarreraEdt.setAdapter(adaptador);
+
+        for(int j=0;j< datos.length; j++){
+            if(datos[j].equals(valorCarrera)){
+                posicionCarrera=j;
+            }
+        }
+
+        edtID.setText(String.valueOf(valorID));
         edtNombre.setText(valorNombre);
         edtApellido.setText(valorApellido);
         edtCarnet.setText(valorCarnet);
@@ -59,7 +89,7 @@ public class EditarEstudiante extends Activity implements View.OnClickListener {
         }else{
             rbtnFem.setChecked(true);
         }
-        listaCarreraEdt.setSelection(0);
+        listaCarreraEdt.setSelection(posicionCarrera);
 
         btnEdt.setOnClickListener(this);
     }
@@ -72,13 +102,26 @@ public class EditarEstudiante extends Activity implements View.OnClickListener {
                 String sexo;
                 if(rbtnMasc.isChecked()) {
                     sexo= "Masculino";
-                }else {
+                }else if(rbtnFem.isChecked()){
                     sexo= "Femenino";
+                }else{
+                    sexo="";
                 }
                 String carrera= listaCarreraEdt.getSelectedItem().toString();
+                Context context=getApplicationContext();
 
-                dbcon.actualizarDatos(id, nombre, apellido, sexo, carnet, carrera);
-                this.returnHome();
+        if(nombre.isEmpty() || nombre.trim().length()<1
+                || apellido.isEmpty() || apellido.trim().length()<1
+                || carnet.isEmpty() || carnet.trim().length()<1
+                || carrera.isEmpty() || carrera.trim().length()<1
+                || sexo.isEmpty() || sexo.trim().length()<1){
+            Toast.makeText(context, "Favor llenar todos los campos", Toast.LENGTH_SHORT).show();
+
+        }else {
+            dbcon.actualizarDatos(id, nombre, apellido, sexo, carnet, carrera);
+            Toast.makeText(context, "Se ha editado el registro con id: " + id, Toast.LENGTH_SHORT).show();
+            this.returnHome();
+        }
         }
 
     public void returnHome() {

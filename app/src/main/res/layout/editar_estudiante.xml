@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".EditarEstudiante">
+    tools:context=".EditarEstudiante"
+    android:background="@android:color/darker_gray">
 
     <EditText
         android:id="@+id/edtID"
@@ -21,7 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:ems="10"/>
+        android:ems="10"
+        android:maxLength="15"/>
 
     <EditText
         android:id="@+id/edtApellido"
@@ -29,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:ems="10"
-        android:enabled="false"/>
+        android:maxLength="15"/>
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -52,7 +54,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginTop="40dp"
-        android:hint="Carnet">
+        android:hint="Carnet"
+        android:maxLength="7">
     </EditText>
 
     <Spinner

@@ -18,7 +18,7 @@ public class DBhelper extends SQLiteOpenHelper {
 
     // información del a base de datos
     static final String DB_NAME = "DBSTUDENT";
-    static final int DB_VERSION = 5;
+    static final int DB_VERSION = 6;
 
     // Información de la base de datos
     private static final String CREATE_TABLE = "create table "

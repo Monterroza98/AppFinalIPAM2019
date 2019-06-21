@@ -66,8 +66,10 @@ public class SQLControlador {
         return i;
     }
 
-    public void deleteData(long id) {
-        database.delete(DBhelper.TABLE_STUDENTS, DBhelper.STUDENT_ID + "="
-                + id, null);
+    public void borrarDatos(long id) {
+
+        String[] where= new String[] { String.valueOf(id) };
+        database.delete(DBhelper.TABLE_STUDENTS, DBhelper.STUDENT_ID + "=?"
+                , where);
     }
 }

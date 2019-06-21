@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AppFinalIPAM</string>
+    <string name="cancelar">CANCELAR</string>
+    <string name="aceptar">ACEPTAR</string>
 </resources>

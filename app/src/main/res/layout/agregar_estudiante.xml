@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AgregarEstudiante">
+    tools:context=".AgregarEstudiante"
+    android:background="@android:color/darker_gray">
 
     <EditText
         android:id="@+id/addNombre"
@@ -13,7 +14,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginTop="40dp"
-        android:hint="Nombre">
+        android:hint="Nombre"
+        android:maxLength="15">
         <requestFocus />
     </EditText>
 
@@ -23,7 +25,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginTop="40dp"
-        android:hint="Apellido">
+        android:hint="Apellido"
+        android:maxLength="15">
     </EditText>
 
     <RadioGroup
@@ -47,7 +50,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginTop="40dp"
-        android:hint="Carnet">
+        android:hint="Carnet"
+        android:maxLength="7">
     </EditText>
 
     <Spinner
