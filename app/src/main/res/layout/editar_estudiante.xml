@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".EditarEstudiante"
-    android:background="@android:color/darker_gray">
+    android:background="@android:color/background_light">
 
     <EditText
         android:id="@+id/edtID"
@@ -59,17 +59,20 @@
     </EditText>
 
     <Spinner
+        android:id="@+id/listCarreraEdt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/listCarreraEdt">
-    </Spinner>
+        android:layout_height="42dp"></Spinner>
 
     <Button
         android:id="@+id/btnEditarEstudiante"
-        android:layout_width="wrap_content"
+        android:layout_width="213dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Editar" />
+        android:background="@color/botones"
+        android:backgroundTint="@color/botones"
+        android:text="Editar"
+        android:textColor="@color/colorLetra"
+        android:textSize="18sp" />
 
 
 
