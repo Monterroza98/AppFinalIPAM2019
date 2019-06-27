@@ -69,13 +69,19 @@ public class AgregarEstudiante extends Activity implements View.OnClickListener 
             sexoAdd="";
         }
 
-        if(nombreAdd.isEmpty() || nombreAdd.trim().length()<1
-                || apellidoAdd.isEmpty() || apellidoAdd.trim().length()<1
-                || carnetAdd.isEmpty() || carnetAdd.trim().length()<1
-                || carreraAdd.isEmpty() || carreraAdd.trim().length()<1
-                || sexoAdd.isEmpty() || sexoAdd.trim().length()<1){
-            Toast.makeText(context, "Favor llenar todos los campos", Toast.LENGTH_SHORT).show();
-
+        if(nombreAdd.isEmpty() || nombreAdd.trim().length()<1){
+            Toast.makeText(context, "Favor llenar el nombre", Toast.LENGTH_SHORT).show();
+            nombre.setError("Vacio");
+        }else if(apellidoAdd.isEmpty() || apellidoAdd.trim().length()<1){
+            Toast.makeText(context, "Favor llenar el apellido", Toast.LENGTH_SHORT).show();
+            apellido.setError("Vacio");
+        }else if(carnetAdd.isEmpty() || carnetAdd.trim().length()<1){
+            Toast.makeText(context, "Favor llenar el carnet", Toast.LENGTH_SHORT).show();
+            carnet.setError("Vacio");
+        }else if(carreraAdd.isEmpty() || carreraAdd.trim().length()<1){
+            Toast.makeText(context, "Favor elegir carrera", Toast.LENGTH_SHORT).show();
+        }else if(sexoAdd.isEmpty() || sexoAdd.trim().length()<1){
+            Toast.makeText(context, "Favor elegir sexo", Toast.LENGTH_SHORT).show();
         }else{
             dbconeccion.insertarDatos(nombreAdd, apellidoAdd, sexoAdd, carnetAdd, carreraAdd);
             Toast.makeText(context, "Se ha agregado el registro con exito", Toast.LENGTH_SHORT).show();

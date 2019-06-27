@@ -110,13 +110,19 @@ public class EditarEstudiante extends AppCompatActivity implements View.OnClickL
                 String carrera= listaCarreraEdt.getSelectedItem().toString();
                 Context context=getApplicationContext();
 
-        if(nombre.isEmpty() || nombre.trim().length()<1
-                || apellido.isEmpty() || apellido.trim().length()<1
-                || carnet.isEmpty() || carnet.trim().length()<1
-                || carrera.isEmpty() || carrera.trim().length()<1
-                || sexo.isEmpty() || sexo.trim().length()<1){
-            Toast.makeText(context, "Favor llenar todos los campos", Toast.LENGTH_SHORT).show();
-
+        if(nombre.isEmpty() || nombre.trim().length()<1){
+            Toast.makeText(context, "Favor llenar el nombre", Toast.LENGTH_SHORT).show();
+            edtNombre.setError("Vacio");
+        }else if(apellido.isEmpty() || apellido.trim().length()<1){
+            Toast.makeText(context, "Favor llenar el apellido", Toast.LENGTH_SHORT).show();
+            edtApellido.setError("Vacio");
+        }else if(carnet.isEmpty() || carnet.trim().length()<1){
+            Toast.makeText(context, "Favor llenar el carnet", Toast.LENGTH_SHORT).show();
+            edtCarnet.setError("Vacio");
+        }else if(carrera.isEmpty() || carrera.trim().length()<1){
+            Toast.makeText(context, "Favor elegir carrera", Toast.LENGTH_SHORT).show();
+        }else if(sexo.isEmpty() || sexo.trim().length()<1){
+            Toast.makeText(context, "Favor elegir sexo", Toast.LENGTH_SHORT).show();
         }else {
             dbcon.actualizarDatos(id, nombre, apellido, sexo, carnet, carrera);
             Toast.makeText(context, "Se ha editado el registro con id: " + id, Toast.LENGTH_SHORT).show();
